@@ -1,0 +1,521 @@
+/*--------------------------------------------*/
+
+#hub-flex-container
+{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+/*--------------------------------------------*/
+/*--------------------------------------------*/
+/*Pop up for disclaimer*/
+#disclaimer-modal
+{
+    top: 25%;
+    left: 50%;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: white;
+    height: 350px;
+    width: 400px;
+    z-index: 11;
+}
+
+#disclaimer-modal-header
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    translate: 90%;
+}
+
+#disclaimer-title
+{
+    padding: 30px 50px;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+}
+
+#disclaimer-modal-body
+{
+    text-align: center;
+    padding: 0 20px;
+}
+
+#i-understand-button
+{
+    border-radius: 50px;
+    border: none;
+    font-size: 20px;
+    background-color: rgb(255, 77, 77);
+    color: rgb(231, 231, 231);
+    margin: 20px;
+    padding: 15px 25px;
+}
+
+#i-understand-button:hover
+{
+    background-color: rgb(255, 116, 116);
+    cursor: pointer;
+    animation-name: magnify;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+
+/*--------------------------------------------*/
+
+/*Header*/
+/*--------------------------------------------*/
+#header-box
+{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgb(255,232,214);
+    font-size: 24px;
+    /*border: 1px solid; /*for visual purposes*/
+    box-shadow: 0px 2px 5px -2px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    text-align: center;
+    z-index: 2;
+}
+
+.heading-link
+{
+    text-decoration: none;
+    color: inherit;
+}
+
+/*--------------------------------------------*/
+/*Description*/
+/*--------------------------------------------*/
+
+/*some possible rgb values for this box
+rgb(238, 238, 238)
+rgb(24, 40, 112)
+*/
+#description-box
+{
+    /*border: 1px solid; /*for visual purposes*/
+    height: 400px;
+    width: 800px;
+    /*background-color: rgb(238, 238, 238);*/
+    margin-top: 150px;
+    text-align: center;
+}
+
+#description-header
+{
+    /*border: 1px solid; /*for visual purposes*/
+    font-size: 48px;
+    color: rgb(0, 0, 0);
+    margin: 20px;
+    padding: 5px;
+    
+}
+
+.description-header-animation
+{
+    animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.05s;
+}
+
+#description
+{
+    /*border: 1px solid; /*for visual purposes*/
+    font-size: 24px;
+    color: rgb(0, 0, 0);
+    margin: 10px;
+    padding: 10px;
+}
+
+.description-animation
+{
+    animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.1s;
+}
+
+#get-started-button
+{
+   border-radius: 50px;
+   /*border-color: rgb(24, 40, 112);
+   border-width: 5px;*/
+   border: none;
+   background-color: rgb(34, 85, 55);
+   font-size: 15px;
+   color: rgb(255, 255, 255);
+   margin: 20px;
+   padding: 15px 25px;
+}
+
+.get-started-button-animation
+{
+   animation-name: appearToScreen, moveToScreen;
+   animation-duration: 3s, 0.75s; 
+   animation-delay: 0.15s;
+}
+
+
+#get-started-button:hover
+{
+    background-color: rgb(52, 131, 85);
+    cursor: pointer;
+    animation-name: magnify;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+/*--------------------------------------------*/
+
+/*Benefits*/
+/*--------------------------------------------*/
+#benefits-flex-container
+{
+    margin-top: 150px;
+    /*border: 5px solid; /*for visual purposes*/
+    position: relative;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#benefits-box
+{
+    position: relative;
+    /*border: 5px solid; /*for visual purposes*/
+    height: 100px;
+    width: 500px;
+    font-weight: bold;
+    color: rgb(227, 227, 227);
+    background-color: rgb(34, 85, 55);
+    padding: 10px;
+    overflow: hidden; 
+}
+
+
+.hide-benefit
+{
+    display: none;
+}
+
+.display-benefit
+{
+    position: absolute;
+    display: block;
+    opacity: 0;
+    animation-name: fadeInNOut, moveInNOut;
+    animation-duration: 5s;
+}
+
+#benefit-radio-container
+{
+    background-color: rgb(75, 75, 75);
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    position: absolute;
+    margin: 20px;
+    padding: 10px;
+    top: 110px;
+    left: 30px;
+    right: 30px;
+    flex-wrap: wrap;
+}
+
+.benefit-radio-boxes
+{
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border: 2px solid;
+    background-color: rgb(181, 181, 181);
+    border-radius: 50%;
+    border-color: rgb(181, 181, 181);
+    outline: none;
+}
+
+.benefit-radio-boxes:checked
+{
+    border-color: rgb(34, 85, 55);
+    background-color: rgb(34, 85, 55);
+}
+
+.benefit-slider-buttons
+{
+    position: absolute;
+    border-radius: 50px;
+    border-width: 1px;
+    height: 50px;
+    color: rgb(227, 227, 227);
+    background-color: rgb(60, 60, 60);
+}
+
+.benefit-slider-buttons:hover
+{
+    background-color: rgb(40, 40, 40);
+    cursor: pointer;
+}
+
+#previous
+{
+    left: -25px;
+}
+
+#next
+{
+    right: -25px;
+}
+
+/*--------------------------------------------*/
+
+/*How To Use Section*/
+
+/*--------------------------------------------*/
+#how-to-use
+{
+    /*border: 5px solid; /*for visual purposes*/
+    position: relative;
+    top: 80px;
+    font-size: 45px;
+    text-align: center;
+    animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.1s;
+}
+
+#steps-flex-box
+{
+    /*border: 5px solid; /*for visual purposes*/
+    position: relative;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    margin-top: 100px;
+    padding: 75px;
+    font-size: 24px;
+    font-weight: bold;
+    /*animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.05s;*/
+    /*background-color: rgb(255,232,214, 0.1)*/
+}
+
+.steps
+{
+    border: none;
+    height: 100px;
+    width: 400px;
+    padding: 50px;
+    text-align: center;
+    box-shadow: 1px 1px 3px -3px;
+    background-color: rgb(247, 247, 247);
+}
+
+#step-one
+{
+
+    animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.1s;
+}
+
+#step-two
+{
+    animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.2s;
+}
+
+#step-three
+{
+    animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.3s;
+}
+
+/*--------------------------------------------*/
+
+/*Statistics Section*/
+/*--------------------------------------------*/
+#statistics
+{
+    /*border: 2px solid; /*for visual purposes*/
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    
+}
+
+#statistics p
+{
+    flex: 1 1 50%;          
+    box-sizing: border-box; 
+    text-align: left;
+    padding-left: 200px; 
+    padding-right: 200px; 
+    /*border: 1px solid black;/*for visual purposes*/
+}
+
+.number
+{
+    font-size: 72px;
+    font-weight: bold; 
+}
+
+#statistic-one
+{
+    animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.1s;
+}
+
+#statistic-two
+{
+    animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.2s;
+}
+
+#statistic-three
+{
+    animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.3s;
+}
+
+#statistic-four
+{
+    animation-name: appearToScreen, moveToScreen;
+    animation-duration: 3s, 0.75s; 
+    animation-delay: 0.4s;
+}
+/*--------------------------------------------*/
+
+/*Information Section*/
+/*--------------------------------------------*/
+#information
+{
+    margin-top: 50px;
+    margin-bottom: 50px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    color: rgb(40, 40, 40);
+}
+/*Choose Resume Template Box
+/*--------------------------------------------*/
+
+#choose-a-template-modal
+{
+    top: 50%;
+    left: 50%;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+}
+
+#choose-a-template-modal-header
+{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    translate: 92.5%;
+}
+
+#choose-a-template-title
+{
+    padding-top: 20px;
+    padding-bottom: 10px;
+    text-align: center;
+    font-size: 35px;
+    font-weight: bold;
+    /*border: 1px solid black;*/
+}
+
+#choose-a-template-close-button
+{
+
+}
+
+
+#choose-a-template-modal-body
+{
+    padding: 30px 50px;
+    display: flex;
+    justify-content: space-evenly;
+    gap: 50px;
+    /*border: 1px solid black;*/
+}
+
+.resume-choice-buttons
+{
+    border-radius: 50px;
+    border: none;
+    font-size: 25px;
+    color: rgb(231, 231, 231);
+    margin: 20px;
+    padding: 15px 25px;
+}
+
+#sample-button
+{
+    background-color: rgb(34, 85, 55);
+}
+
+#custom-button
+{
+    background-color: rgb(25, 39, 79);
+}
+
+#sample-button:hover
+{
+    background-color: rgb(52, 131, 85);
+    cursor: pointer;
+    animation-name: magnify;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+#custom-button:hover
+{
+    background-color: rgb(41, 64, 129);
+    cursor: pointer;
+    animation-name: magnify;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+#overlay
+{
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    pointer-events: none;
+    z-index: 9;
+}
+
+#overlay.active
+{
+    opacity: 1;
+    pointer-events: all;
+}
+
+
+/*--------------------------------------------*/

@@ -1,0 +1,308 @@
+
+
+main
+{
+    display: flex;
+    justify-content: center;
+}
+
+#resume-box
+{
+    position: relative;
+    border: none;
+    width: 544px;
+    height: 704px;
+    background-color: white;
+    box-shadow: 2px 2px 3px -3px;
+    font-size: 12px;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.section
+{
+    position: relative;
+}
+
+.single-line-item
+{
+    position: relative;
+}
+
+#name
+{
+    position: relative;
+    text-align: center;
+    font-weight: bold;
+    padding: 20px;
+}
+
+#information
+{
+    position: relative;
+    text-align: center;
+    padding: 2px;
+}
+
+#address
+{
+    position: relative;
+}
+
+#about-me
+{
+    position: relative;
+    text-align: center;
+    padding: 15px 15px 10px 10px;
+}
+
+.left-right-indent
+{
+    position: relative;
+    padding-left: 20px;
+    padding-right: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.section-title
+{
+    position: relative;
+    margin: 0px;
+    padding-left: 15px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.line-break
+{
+    position: relative;
+    margin: 0px auto;
+    border: none;
+    border-top: 1.5px solid black;
+    width: 95%;
+}
+
+.experience-name
+{
+    font-weight: bold;
+}
+
+.location
+{
+    font-weight: bold;
+}
+
+#position
+{
+
+}
+
+.time-period
+{
+    font-style: italic;
+}
+
+#professional-experience
+{
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.experience-details
+{
+    position: relative;
+    padding-top: 3px;
+    margin: 0px;
+}
+
+#projects
+{
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.project-name
+{
+    font-weight: bold;
+}
+
+.project-details
+{
+    position: relative;
+    padding-top: 3px;
+    margin: 0px;
+}
+
+#education
+{
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+#school
+{
+    font-weight: bold;
+}
+
+.additional-skills-details
+{
+    position: relative;
+    padding-top: 10px;
+    margin: 0px;
+}
+/*-----------------------------------------------*/
+
+
+.highlight-section
+{
+    outline: 3px solid rgb(85, 147, 255);
+}
+
+.highlight-element
+{
+    outline: 3px solid rgb(236, 60, 44);
+}
+
+.edit-cursor
+{
+    position: absolute;
+    display: block;
+    bottom: -36px;
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 100%;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    font-family: "Hubot Sans", Arial;
+    font-size: 12px;
+    color: white;
+    background-color: rgb(85, 147, 255);
+    text-align: center;
+    border-radius: 5px;
+    z-index: 1;
+}
+
+/*-----------------------------------------------*/
+
+#save-button
+{
+    position: absolute;
+    top: 710px;
+    left: 0px;
+    border-radius: 50px;
+    border: none;
+    font-size: 10px;
+    font-family: "Hubot Sans", Arial;
+    background-color: rgb(25, 39, 79);
+    color: rgb(231, 231, 231);
+    padding: 10px 15px;
+}
+
+#save-button:hover
+{
+    background-color: rgb(41, 64, 129);
+    cursor: pointer;
+    animation-name: magnify;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+
+/*-----------------------------------------------*/
+/*Text Editor*/
+#text-editor
+{
+    background-color: rgb(255, 255, 255);
+    width: 400px;
+    padding: 50px 30px;
+    position: absolute;
+    right: 5%;
+    top: 5%;
+    /*border: solid;
+    border-color: black;*/
+    border-radius: 10px;
+    box-shadow: 0 25px 50px rgba(7, 20, 35, 0.2);
+    z-index: 1;
+    display: none;
+}
+
+#text-editor.active
+{
+    display: block;
+}
+
+.options
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+}
+
+.options button 
+{
+    height: 28px;
+    width: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 3px;
+    border: none;
+    background-color: white;
+    outline: none;
+    color: #020929;
+}
+
+select
+{
+    padding: 7px;
+    border: 1px solid #020929;
+    border-radius: 3px;
+}
+
+.options label, .options select
+{
+    font-family: "Poppins", sans-serif;
+}
+
+.input-wrapper
+{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+input[type="color"]
+{
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    width: 40px;
+    height: 28px;
+    border: none;
+    cursor: pointer;
+}
+
+input[type="color"]::-moz-color-swatch 
+{
+    border-radius: 15px;
+    box-shadow: 0 0 0 2px white, 0 0 0 3px #020929;
+}
+
+#text-input
+{
+    margin-top: 10px;
+    border: 1px solid #dddddd;
+    padding: 20px;
+    height: 100px
+}
+
+.options button.active
+{
+    background-color: #e0e9ff;
+}
+/*-----------------------------------------------*/
+
+

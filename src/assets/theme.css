@@ -1,0 +1,105 @@
+/*Modal Constants*/
+.modal
+{
+    position: fixed;
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+}
+
+.close-button
+{
+    cursor: pointer;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 10px;
+    /*outline: none;*/
+    /*background: none;*/
+    background-color: rgb(255, 77, 77);
+    font-size: 25px;
+    font-weight: bold;
+    color: rgb(255, 255, 255)
+}
+
+.close-button:hover
+{
+    background-color: rgb(255, 116, 116);
+    border-color: rgb(50, 50, 50);
+}
+
+.modal.active
+{
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.modal.fadeIn
+{
+    animation-name: fadeIn;
+    animation-duration: 1s;
+}
+
+.modal.fadeOut
+{
+    animation: fadeOut 0.3s forwards;
+}
+
+/*--------------------------------------------*/
+
+/*Animations*/
+/*--------------------------------------------*/
+@keyframes appearToScreen
+{
+    0% {opacity: 0%};
+    100% {opacity: 100%};
+}
+
+@keyframes moveToScreen
+{
+    0% {transform: translateY(100%)}
+    100% {transform: translateY(0%)}
+}
+
+@keyframes magnify
+{
+    0% {transform: scale(1);}
+    50% {transform: scale(1.2);}
+    100% {transform: scale(1);}
+}
+
+@keyframes fadeIn {
+    0% {opacity: 0;}
+    100%{opacity: 1;}
+}
+
+@keyframes fadeOut {
+    0% {opacity: 1;}
+    100%{opacity: 0;}
+}
+
+@keyframes fadeInNOut {
+    0% {opacity: 0;}
+    20% {opacity: 1;}
+    50% {opacity: 1;}
+    80% {opacity: 0;}
+    100%{opacity: 0;}
+}
+
+@keyframes moveInNOut {
+    0%{transform: translateY(100%);}
+    20%{transform: translateY(0%);}
+    50%{transform: translateY(0%);}
+    80%{transform: translateY(100%);}
+    100%{transform: translateY(100%);}
+}
+
+
+body 
+{
+   background: linear-gradient(rgb(255,232,214), white);
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+}
+
+.font-type
+{
+    font-family: "Hubot Sans", Arial;
+}
