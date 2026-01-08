@@ -14,13 +14,15 @@
       </button>
     </div>
   </div>
+
   <header>
     <h1 id="header-box">
-      <Link to="/" className="heading-link">
+      <a href="frontpage.html" className="heading-link">
         FreeResumeBuilder
-      </Link>
+      </a>
     </h1>
   </header>
+
   <main>
     <section id="hub-flex-container">
       <div id="description-box">
@@ -74,7 +76,6 @@
             id="benefit-radio-box-two"
             disabled
           />
-
           <input
             type="radio"
             name="slide"
@@ -87,11 +88,9 @@
 
         <button className="benefit-slider-buttons" id="previous">
           {" "}
-          prev{" "}
         </button>
         <button className="benefit-slider-buttons" id="next">
           {" "}
-          next{" "}
         </button>
       </div>
     </section>
@@ -108,16 +107,16 @@
       </div>
       <div id="choose-a-template-title">Choose a template:</div>
       <div id="choose-a-template-modal-body">
-        <Link to="resume">
+        <a href="resumePage.html">
           <button className="resume-choice-buttons" id="sample-button">
             Sample
           </button>
-        </Link>
-        <Link to="resume">
+        </a>
+        <a href="resumePage.html">
           <button className="resume-choice-buttons" id="custom-button">
             Custom
           </button>
-        </Link>
+        </a>
       </div>
     </div>
 
@@ -142,30 +141,32 @@
     <section id="statistics">
       <p id="statistic-one">
         {" "}
-        <span className="number"> 69 + </span> <br></br> Lorem ipsum dolor sit
+        <span className="number"> 69 + </span> <br /> Lorem ipsum dolor sit
         amet, consectetur adipiscing elit.{" "}
       </p>
       <p id="statistic-two">
         {" "}
-        <span className="number"> 43 </span> <br></br> Maecenas magna enim,
+        <span className="number"> 43 </span> <br /> Maecenas magna enim,
         dignissim id dolor sed, tempor pellentesque nunc.
       </p>
       <p id="statistic-three">
         {" "}
-        <span className="number"> 657 </span> <br></br> Mauris cursus egestas
+        <span className="number"> 657 </span> <br /> Mauris cursus egestas
         porttitor.{" "}
       </p>
       <p id="statistic-four">
         {" "}
-        <span className="number"> 435 </span> <br></br> Orci varius natoque
+        <span className="number"> 435 </span> <br /> Orci varius natoque
         penatibus et magnis dis parturient montes, nascetur ridiculus mus.
       </p>
     </section>
   </main>
+
   <footer id="information">
     <i className="fa-brands fa-discord fa-2xl"></i>
     <i className="fa-brands fa-github fa-2xl"></i>
     <i className="fa-brands fa-linkedin fa-2xl"></i>
   </footer>
+
   <div id="overlay"></div>
 </div>;

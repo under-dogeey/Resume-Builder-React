@@ -1,11 +1,17 @@
+main
+{
+    display: flex;
+    flex-wrap: wrap;
+}
 /*--------------------------------------------*/
-
 #hub-flex-container
 {
     display: flex;
-    justify-content: space-around;
+    /*justify-content: space-around;*/
     align-items: center;
-    flex-wrap: wrap;
+    /*flex-wrap: wrap;*/
+    flex-direction: row;
+    gap: 150px
 }
 /*--------------------------------------------*/
 /*--------------------------------------------*/
@@ -31,7 +37,7 @@
 
 #disclaimer-title
 {
-    padding: 30px 50px;
+    /*padding: 30px 50px;*/
     text-align: center;
     font-size: 35px;
     font-weight: bold;
@@ -40,7 +46,7 @@
 #disclaimer-modal-body
 {
     text-align: center;
-    padding: 0 20px;
+    /*padding: 0 20px;*/
 }
 
 #i-understand-button
@@ -50,8 +56,8 @@
     font-size: 20px;
     background-color: rgb(255, 77, 77);
     color: rgb(231, 231, 231);
-    margin: 20px;
-    padding: 15px 25px;
+    /*margin: 20px;
+    padding: 15px 25px;*/
 }
 
 #i-understand-button:hover
@@ -106,6 +112,7 @@ rgb(24, 40, 112)
     /*background-color: rgb(238, 238, 238);*/
     margin-top: 150px;
     text-align: center;
+    
 }
 
 #description-header
@@ -144,8 +151,8 @@ rgb(24, 40, 112)
 #get-started-button
 {
    border-radius: 50px;
-   /*border-color: rgb(24, 40, 112);
-   border-width: 5px;*/
+   border-color: rgb(24, 40, 112);
+   border-width: 5px;
    border: none;
    background-color: rgb(34, 85, 55);
    font-size: 15px;
@@ -177,7 +184,7 @@ rgb(24, 40, 112)
 /*--------------------------------------------*/
 #benefits-flex-container
 {
-    margin-top: 150px;
+    margin-top: 50px;
     /*border: 5px solid; /*for visual purposes*/
     position: relative;
     display: flex;
@@ -280,6 +287,10 @@ rgb(24, 40, 112)
 /*--------------------------------------------*/
 #how-to-use
 {
+
+}
+#how-to-use-header
+{
     /*border: 5px solid; /*for visual purposes*/
     position: relative;
     top: 80px;
@@ -301,9 +312,9 @@ rgb(24, 40, 112)
     padding: 75px;
     font-size: 24px;
     font-weight: bold;
-    /*animation-name: appearToScreen, moveToScreen;
+    animation-name: appearToScreen, moveToScreen;
     animation-duration: 3s, 0.75s; 
-    animation-delay: 0.05s;*/
+    animation-delay: 0.05s;
     /*background-color: rgb(255,232,214, 0.1)*/
 }
 
@@ -361,7 +372,7 @@ rgb(24, 40, 112)
     box-sizing: border-box; 
     text-align: left;
     padding-left: 200px; 
-    padding-right: 200px; 
+    padding-right: 200px;
     /*border: 1px solid black;/*for visual purposes*/
 }
 
@@ -404,12 +415,12 @@ rgb(24, 40, 112)
 /*--------------------------------------------*/
 #information
 {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    /*margin-top: 50px;
+    margin-bottom: 50px;*/
     position: relative;
     display: flex;
     justify-content: center;
-    gap: 20px;
+    /*gap: 20px;*/
     color: rgb(40, 40, 40);
 }
 /*Choose Resume Template Box
@@ -465,8 +476,8 @@ rgb(24, 40, 112)
     border: none;
     font-size: 25px;
     color: rgb(231, 231, 231);
-    margin: 20px;
-    padding: 15px 25px;
+    /*margin: 20px;
+    padding: 15px 25px;*/
 }
 
 #sample-button
