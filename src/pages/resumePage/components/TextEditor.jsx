@@ -1,114 +1,269 @@
-export function TextEditor() {
+import { TextStyleKit } from "@tiptap/extension-text-style";
+import { EditorContent, useEditor, useEditorState } from "@tiptap/react";
+import StarterKit from "@tiptap/starter-kit";
+import React from "react";
+import Underline from "@tiptap/extension-underline";
+import Subscript from "@tiptap/extension-subscript";
+import Superscript from "@tiptap/extension-superscript";
+import Link from "@tiptap/extension-link";
+import { TextStyle } from "@tiptap/extension-text-style";
+import { FontFamily } from "@tiptap/extension-font-family";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faBold,
+  faItalic,
+  faStrikethrough,
+  faUnderline,
+  faLink,
+  faSubscript,
+  faSuperscript,
+  faListUl,
+  faListOl,
+  faUndo,
+  faRedo,
+} from "@fortawesome/free-solid-svg-icons";
+import { FontSize } from "./Extensions/FontSize";
+import Color from "@tiptap/extension-color";
+import Highlight from "@tiptap/extension-highlight";
+import "./TextEditor.css";
+
+const extensions = [
+  TextStyleKit,
+  StarterKit,
+  Underline,
+  Link.configure({
+    openOnClick: false,
+    autolink: true,
+  }),
+  Subscript,
+  Superscript,
+  TextStyle,
+  FontFamily,
+  FontSize,
+  Color,
+  Highlight.configure({ multicolor: true }),
+];
+
+function MenuBar({ editor }) {
+  // Read the current editor's state, and re-render the component when it changes
+  const editorState = useEditorState({
+    editor,
+    selector: (ctx) => {
+      return {
+        isBold: ctx.editor.isActive("bold") ?? false,
+        canBold: ctx.editor.can().chain().toggleBold().run() ?? false,
+        isItalic: ctx.editor.isActive("italic") ?? false,
+        canItalic: ctx.editor.can().chain().toggleItalic().run() ?? false,
+        isUnderline: ctx.editor.isActive("underline") ?? false,
+        canUnderline: ctx.editor.can().chain().toggleUnderline().run() ?? false,
+        isStrike: ctx.editor.isActive("strike") ?? false,
+        canStrike: ctx.editor.can().chain().toggleStrike().run() ?? false,
+        isSubscript: ctx.editor.isActive("subscript") ?? false,
+        canSubscript: ctx.editor.can().chain().toggleSubscript().run() ?? false,
+        isSuperscript: ctx.editor.isActive("superscript") ?? false,
+        canSuperscript:
+          ctx.editor.can().chain().toggleSuperscript().run() ?? false,
+        isLink: ctx.editor.isActive("link") ?? false,
+        isBulletList: ctx.editor.isActive("bulletList") ?? false,
+        isOrderedList: ctx.editor.isActive("orderedList") ?? false,
+        canUndo: ctx.editor.can().chain().undo().run() ?? false,
+        canRedo: ctx.editor.can().chain().redo().run() ?? false,
+        fontFamily: ctx.editor.getAttributes("textStyle").fontFamily || "",
+        fontSize: ctx.editor.getAttributes("textStyle").fontSize || "",
+        color: ctx.editor.getAttributes("textStyle").color || "#000000",
+        highlight: ctx.editor.getAttributes("highlight").color || "",
+      };
+    },
+  });
+
   return (
-    <>
-      <div id="text-editor">
-        <div className="options">
-          <button id="bold" className="option-button format">
-            <i className="fa-solid fa-bold"></i>
-          </button>
+    <div className="control-group">
+      <div className="menu-bar">
+        <button
+          onClick={() => editor.chain().focus().toggleBold().run()}
+          disabled={!editorState.canBold}
+          className={editorState.isBold ? "is-active" : ""}
+        >
+          <FontAwesomeIcon icon={faBold} />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleItalic().run()}
+          disabled={!editorState.canItalic}
+          className={editorState.isItalic ? "is-active" : ""}
+        >
+          <FontAwesomeIcon icon={faItalic} />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleStrike().run()}
+          disabled={!editorState.canStrike}
+          className={editorState.isStrike ? "is-active" : ""}
+        >
+          <FontAwesomeIcon icon={faStrikethrough} />
+        </button>
 
-          <button id="italic" className="option-button format">
-            <i className="fa-solid fa-italic"></i>
-          </button>
+        <button
+          onClick={() => editor.chain().focus().toggleUnderline().run()}
+          disabled={!editorState.canUnderline}
+          className={editorState.isUnderline ? "is-active" : ""}
+        >
+          <FontAwesomeIcon icon={faUnderline} />
+        </button>
 
-          <button id="underline" className="option-button format">
-            <i className="fa-solid fa-underline"></i>
-          </button>
+        <button
+          onClick={() => editor.chain().focus().toggleSubscript().run()}
+          disabled={!editorState.canSubscript}
+          className={editorState.isSubscript ? "is-active" : ""}
+        >
+          <FontAwesomeIcon icon={faSubscript} />
+        </button>
 
-          <button id="strikethrough" className="option-button format">
-            <i className="fa-solid fa-strikethrough"></i>
-          </button>
+        <button
+          onClick={() => editor.chain().focus().toggleSuperscript().run()}
+          disabled={!editorState.canSuperscript}
+          className={editorState.isSuperscript ? "is-active" : ""}
+        >
+          <FontAwesomeIcon icon={faSuperscript} />
+        </button>
 
-          <button id="superscript" className="option-button script">
-            <i className="fa-solid fa-superscript"></i>
-          </button>
+        <button
+          onClick={() => {
+            const url = window.prompt("Enter URL");
 
-          <button id="subscript" className="option-button script">
-            <i className="fa-solid fa-subscript"></i>
-          </button>
+            if (!url) {
+              editor.chain().focus().unsetLink().run();
+              return;
+            }
 
-          <button id="insertUnorderedList" className="option-button">
-            <i className="fa-solid fa-list-ol"></i>
-          </button>
+            editor
+              .chain()
+              .focus()
+              .extendMarkRange("link")
+              .setLink({ href: url })
+              .run();
+          }}
+          className={editorState.isLink ? "is-active" : ""}
+        >
+          <FontAwesomeIcon icon={faLink} />
+        </button>
 
-          <button id="insertOrderedList" className="option-button">
-            <i className="fa-solid fa-list"></i>
-          </button>
+        <button
+          onClick={() => editor.chain().focus().toggleBulletList().run()}
+          className={editorState.isBulletList ? "is-active" : ""}
+        >
+          <FontAwesomeIcon icon={faListUl} />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().toggleOrderedList().run()}
+          className={editorState.isOrderedList ? "is-active" : ""}
+        >
+          <FontAwesomeIcon icon={faListOl} />
+        </button>
 
-          <button id="undo" className="option-button">
-            <i className="fa-solid fa-rotate-left"></i>
-          </button>
+        <button
+          onClick={() => editor.chain().focus().undo().run()}
+          disabled={!editorState.canUndo}
+        >
+          <FontAwesomeIcon icon={faUndo} />
+        </button>
+        <button
+          onClick={() => editor.chain().focus().redo().run()}
+          disabled={!editorState.canRedo}
+        >
+          <FontAwesomeIcon icon={faRedo} />
+        </button>
 
-          <button id="redo" className="option-button">
-            <i className="fa-solid fa-rotate-right"></i>
-          </button>
+        <select
+          onChange={(e) =>
+            editor.chain().focus().setFontFamily(e.target.value).run()
+          }
+          value={editorState.fontFamily}
+        >
+          <option value="">Default</option>
+          <option value="Inter">Inter</option>
+          <option value="Georgia">Georgia</option>
+          <option value="monospace">Monospace</option>
+        </select>
 
-          <button id="createLink" className="adv-option-button">
-            <i className="fa-solid fa-link"></i>
-          </button>
+        <select
+          onChange={(e) =>
+            editor.chain().focus().setFontSize(e.target.value).run()
+          }
+          value={editorState.fontSize}
+        >
+          <option value="">Default</option>
+          <option value="12px">12</option>
+          <option value="14px">14</option>
+          <option value="16px">16</option>
+          <option value="18px">18</option>
+          <option value="24px">24</option>
+        </select>
 
-          <button id="unlink" className="option-button">
-            <i className="fa-solid fa-link-slash"></i>
-          </button>
+        <input
+          type="color"
+          id="fontColor"
+          value={editorState.color || "#000000"}
+          onChange={(e) =>
+            editor.chain().focus().setColor(e.target.value).run()
+          }
+        />
+        <label htmlFor="fontColor">Font Color</label>
 
-          <button id="justifyLeft" className="option-button align">
-            <i className="fa-solid fa-align-left"></i>
-          </button>
-
-          <button id="justifyCenter" className="option-button align">
-            <i className="fa-solid fa-align-center"></i>
-          </button>
-
-          <button id="justifyRight" className="option-button align">
-            <i className="fa-solid fa-align-right"></i>
-          </button>
-
-          <button id="justifyFull" className="option-button align">
-            <i className="fa-solid fa-align-justify"></i>
-          </button>
-
-          <button id="indent" className="option-button spacing">
-            <i className="fa-solid fa-indent"></i>
-          </button>
-
-          <button id="outdent" className="option-button spacing">
-            <i className="fa-solid fa-outdent"></i>
-          </button>
-
-          <select id="formatBlock" className="adv-option-button">
-            <option value="H1">H1</option>
-            <option value="H2">H2</option>
-            <option value="H3">H3</option>
-            <option value="H4">H4</option>
-            <option value="H5">H5</option>
-            <option value="H6">H6</option>
-          </select>
-
-          <select id="font-name" className="adv-option-button"></select>
-
-          <select id="font-size" className="adv-option-button"></select>
-
-          <div className="input-wrapper">
-            <input
-              type="color"
-              id="foreColor"
-              className="adv-option-button"
-            ></input>
-            <label for="foreColor">Font Color</label>
-          </div>
-
-          <div className="input-wrapper">
-            <input
-              type="color"
-              id="backColor"
-              className="adv-option-button"
-            ></input>
-            <label for="backColor">Highlight Color</label>
-          </div>
-        </div>
-
-        <div id="text-input" contenteditable="true"></div>
+        <input
+          type="color"
+          id="highlightColor"
+          value={editorState.highlight || "#ffff00"}
+          onChange={(e) =>
+            editor
+              .chain()
+              .focus()
+              .setMark("highlight", { color: e.target.value })
+              .run()
+          }
+        />
+        <label htmlFor="highlightColor">Highlight Color</label>
       </div>
-    </>
+    </div>
+  );
+}
+
+export function TextEditor() {
+  const editor = useEditor({
+    extensions,
+    content: `
+<h2>
+  Hi there,
+</h2>
+<p>
+  this is a <em>basic</em> example of <strong>Tiptap</strong>. Sure, there are all kind of basic text styles you’d probably expect from a text editor. But wait until you see the lists:
+</p>
+<ul>
+  <li>
+    That’s a bullet list with one …
+  </li>
+  <li>
+    … or two list items.
+  </li>
+</ul>
+<p>
+  Isn’t that great? And all of that is editable. But wait, there’s more. Let’s try a code block:
+</p>
+<pre><code class="language-css">body {
+  display: none;
+}</code></pre>
+<p>
+  I know, I know, this is impressive. It’s only the tip of the iceberg though. Give it a try and click a little bit around. Don’t forget to check the other examples too.
+</p>
+<blockquote>
+  Wow, that’s amazing. Good work, boy! 👏
+  <br />
+  — Mom
+</blockquote>
+`,
+  });
+  return (
+    <div className="text-editor">
+      <MenuBar editor={editor} />
+      <EditorContent editor={editor} />
+    </div>
   );
 }

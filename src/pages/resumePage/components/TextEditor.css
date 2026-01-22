@@ -1,0 +1,59 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap');
+
+.text-editor
+{
+    max-height: 250px;
+    background-color: white;
+    margin: 20px;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.menu-bar
+{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 15px;
+    background-color: white;
+    margin-top: 25px;
+    margin-bottom: 20px;
+    max-width: 450px;
+}
+
+.menu-bar button
+{
+    height: 28px;
+    width: 28px;
+    display: grid;
+    place-items: center;
+    border-radius: 3px;
+    border: none;
+    background-color: white;
+    outline: none;
+    color: #020929;
+}
+
+.menu-bar button.is-active
+{
+    background-color: #e0e9ff;
+}
+
+.ProseMirror
+{
+    font-family: Inter, sans-serif;
+    font-size: 16px;
+    min-height: 100px;
+    max-height: 125px;
+    max-width: 400px;
+    font-size: 16px;
+    margin-left: 10px;
+    margin-right: 10px;
+    padding: 10px;
+    background-color: white;
+    border: 1px solid #dddddd;
+}
+
+.ProseMirror mark {
+  color: inherit;
+}
