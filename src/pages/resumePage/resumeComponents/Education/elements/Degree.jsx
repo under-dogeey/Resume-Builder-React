@@ -1,4 +1,4 @@
-export function Degree({ setActiveElement, active }) {
+export function Degree({ degree, setActiveElement, active }) {
   return (
     <>
       <div
@@ -7,7 +7,7 @@ export function Degree({ setActiveElement, active }) {
         className={`${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        B.S, Fake Major
+        {degree}
       </div>
     </>
   );

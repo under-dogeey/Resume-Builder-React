@@ -1,4 +1,4 @@
-export function School({ setActiveElement, active }) {
+export function School({ school, setActiveElement, active }) {
   return (
     <>
       <div
@@ -7,7 +7,7 @@ export function School({ setActiveElement, active }) {
         className={`${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        Fake State University
+        {school}
       </div>
     </>
   );

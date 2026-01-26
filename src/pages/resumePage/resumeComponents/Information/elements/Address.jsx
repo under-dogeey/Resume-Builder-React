@@ -1,4 +1,4 @@
-export function Address({ setActiveElement, active }) {
+export function Address({ address, setActiveElement, active }) {
   return (
     <>
       <div
@@ -7,7 +7,7 @@ export function Address({ setActiveElement, active }) {
         className={`single-line-item ${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        1111 Fake Court, Fake City, FA 11111
+        {address}
       </div>
     </>
   );

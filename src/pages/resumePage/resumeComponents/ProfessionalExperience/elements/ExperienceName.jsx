@@ -1,4 +1,4 @@
-export function ExperienceName({ setActiveElement, active }) {
+export function ExperienceName({ experienceName, setActiveElement, active }) {
   return (
     <>
       <div
@@ -6,7 +6,7 @@ export function ExperienceName({ setActiveElement, active }) {
         className={`experience-name ${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        Fake Club
+        {experienceName}
       </div>
     </>
   );

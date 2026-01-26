@@ -1,15 +1,12 @@
-export function ProjectDetails({ setActiveElement, active }) {
+export function ProjectDetails({ projectDetails, setActiveElement, active }) {
   return (
     <>
       <ul
         contenteditable="false"
         className={`project-details ${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
-      >
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
-      </ul>
+        dangerouslySetInnerHTML={{ __html: projectDetails }}
+      ></ul>
     </>
   );
 }

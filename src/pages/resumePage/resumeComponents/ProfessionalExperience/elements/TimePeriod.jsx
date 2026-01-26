@@ -1,4 +1,4 @@
-export function TimePeriod({ setActiveElement, active }) {
+export function TimePeriod({ timePeriod, setActiveElement, active }) {
   return (
     <>
       <div
@@ -6,7 +6,7 @@ export function TimePeriod({ setActiveElement, active }) {
         className={`time-period ${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        Month 2069-Present
+        {timePeriod}
       </div>
     </>
   );

@@ -9,7 +9,16 @@ export function Projects({
   isSectionActive,
   setActiveElement,
   activeElement,
+  setActiveTextEditor,
+  setTextContent,
 }) {
+  const [projectName, setProjectName] = useState("Fake Project");
+  const [timePeriod, setTimePeriod] = useState("Month 2069-Present");
+  const [projectDetails, setProjectDetails] =
+    useState(`<li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+        <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>`);
+
   const [isHover, setHover] = useState(false);
   return (
     <>
@@ -18,28 +27,51 @@ export function Projects({
           isSectionActive ? "highlight-section" : ""
         }`}
         id="projects"
-        onClick={setActiveSection}
+        onClick={(event) => {
+          setActiveSection();
+          if (event.target !== event.currentTarget) {
+            return;
+          } else {
+            setActiveTextEditor(false);
+            setActiveElement("");
+          }
+        }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
         <div className="left-right-indent">
           <ProjectName
+            projectName={projectName}
             setActiveElement={() => {
-              isSectionActive ? setActiveElement("project-name") : null;
+              if (isSectionActive) {
+                setActiveElement("project-name");
+                setActiveTextEditor(true);
+                setTextContent(projectName);
+              }
             }}
             active={activeElement === "project-name"}
           ></ProjectName>
           <TimePeriod
+            timePeriod={timePeriod}
             setActiveElement={() => {
-              isSectionActive ? setActiveElement("projects.time-period") : null;
+              if (isSectionActive) {
+                setActiveElement("projects.time-period");
+                setActiveTextEditor(true);
+                setTextContent(timePeriod);
+              }
             }}
             active={activeElement === "projects.time-period"}
           ></TimePeriod>
         </div>
 
         <ProjectDetails
+          projectDetails={projectDetails}
           setActiveElement={() => {
-            isSectionActive ? setActiveElement("project-details") : null;
+            if (isSectionActive) {
+              setActiveElement("project-details");
+              setActiveTextEditor(true);
+              setTextContent(projectDetails);
+            }
           }}
           active={activeElement === "project-details"}
         ></ProjectDetails>

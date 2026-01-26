@@ -6,6 +6,12 @@ main
     justify-content: center;
 }
 
+#resume-stage {
+  display: flex;
+  align-items: flex-start;
+  gap: 24px;
+}
+
 #resume-box
 {
     position: relative;
@@ -217,7 +223,7 @@ main
 
 /*-----------------------------------------------*/
 /*Text Editor*/
-#text-editor
+/*#text-editor
 {
     background-color: rgb(255, 255, 255);
     width: 400px;
@@ -226,11 +232,11 @@ main
     right: 5%;
     top: 5%;
     /*border: solid;
-    border-color: black;*/
+    border-color: black;
     border-radius: 10px;
     box-shadow: 0 25px 50px rgba(7, 20, 35, 0.2);
     z-index: 1;
-    /*display: none;*/
+    /*display: none;
     display: block;
 }
 
@@ -308,7 +314,7 @@ input[type="color"]::-moz-color-swatch
 .options button.active
 {
     background-color: #e0e9ff;
-}
+}*/
 /*-----------------------------------------------*/
 
 

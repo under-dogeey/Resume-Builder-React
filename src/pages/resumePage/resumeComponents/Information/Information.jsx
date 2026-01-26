@@ -9,7 +9,15 @@ export function Information({
   isSectionActive,
   setActiveElement,
   activeElement,
+  setActiveTextEditor,
+  setTextContent,
 }) {
+  const [address, setAddress] = useState(
+    "1111 Fake Court, Fake City, FA 11111",
+  );
+  const [phoneNumber, setPhoneNumber] = useState("(111) 111-1111");
+  const [email, setEmail] = useState("fakefakefake@gmail.com");
+
   const [isHover, setHover] = useState(false);
   return (
     <>
@@ -18,25 +26,48 @@ export function Information({
           isSectionActive ? "highlight-section" : ""
         }`}
         id="information"
-        onClick={setActiveSection}
+        onClick={(event) => {
+          setActiveSection();
+          if (event.target !== event.currentTarget) {
+            return;
+          } else {
+            setActiveTextEditor(false);
+            setActiveElement("");
+          }
+        }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
         <Address
+          address={address}
           setActiveElement={() => {
-            isSectionActive ? setActiveElement("address") : null;
+            if (isSectionActive) {
+              setActiveElement("address");
+              setActiveTextEditor(true);
+              setTextContent(address);
+            }
           }}
           active={activeElement === "address"}
         ></Address>
         <PhoneNumber
+          phoneNumber={phoneNumber}
           setActiveElement={() => {
-            isSectionActive ? setActiveElement("phone-number") : null;
+            if (isSectionActive) {
+              setActiveElement("phone-number");
+              setActiveTextEditor(true);
+              setTextContent(phoneNumber);
+            }
           }}
           active={activeElement === "phone-number"}
         ></PhoneNumber>
         <Email
+          email={email}
           setActiveElement={() => {
-            isSectionActive ? setActiveElement("projects") : null;
+            if (isSectionActive) {
+              setActiveElement("projects");
+              setActiveTextEditor(true);
+              setTextContent(email);
+            }
           }}
           active={activeElement === "projects"}
         ></Email>

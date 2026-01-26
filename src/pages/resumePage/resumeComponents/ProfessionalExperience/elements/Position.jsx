@@ -1,4 +1,4 @@
-export function Position({ setActiveElement, active }) {
+export function Position({ position, setActiveElement, active }) {
   return (
     <>
       <div
@@ -7,7 +7,7 @@ export function Position({ setActiveElement, active }) {
         className={`${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        Faker
+        {position}
       </div>
     </>
   );

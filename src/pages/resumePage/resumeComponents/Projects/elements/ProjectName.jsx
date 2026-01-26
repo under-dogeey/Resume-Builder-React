@@ -1,4 +1,4 @@
-export function ProjectName({ setActiveElement, active }) {
+export function ProjectName({ projectName, setActiveElement, active }) {
   return (
     <>
       <div
@@ -6,7 +6,7 @@ export function ProjectName({ setActiveElement, active }) {
         className={`project-name ${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        Fake Project
+        {projectName}
       </div>
     </>
   );

@@ -1,4 +1,4 @@
-export function GPA({ setActiveElement, active }) {
+export function GPA({ gpa, setActiveElement, active }) {
   return (
     <>
       <div
@@ -7,7 +7,7 @@ export function GPA({ setActiveElement, active }) {
         className={`${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        GPA: 0.1/4.0
+        {gpa}
       </div>
     </>
   );

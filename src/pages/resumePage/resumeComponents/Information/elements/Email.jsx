@@ -1,4 +1,4 @@
-export function Email({ setActiveElement, active }) {
+export function Email({ email, setActiveElement, active }) {
   return (
     <>
       <div
@@ -8,7 +8,7 @@ export function Email({ setActiveElement, active }) {
         className={`${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        (111) 111-1111
+        {email}
       </div>
     </>
   );

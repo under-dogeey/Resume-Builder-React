@@ -1,7 +1,13 @@
 import { EditCursor } from "../components/EditCursor";
 import { useState } from "react";
 
-export function AboutMe({ setActiveSection, isSectionActive }) {
+export function AboutMe({
+  aboutMe,
+  setActiveSection,
+  isSectionActive,
+  setActiveTextEditor,
+  setTextContent,
+}) {
   const [isHover, setHover] = useState(false);
   return (
     <>
@@ -9,14 +15,15 @@ export function AboutMe({ setActiveSection, isSectionActive }) {
         contenteditable="false"
         className={`section ${isSectionActive ? "highlight-section" : ""}`}
         id="about-me"
-        onClick={setActiveSection}
+        onClick={() => {
+          setActiveSection();
+          setActiveTextEditor();
+          setTextContent(aboutMe);
+        }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, esse,
-        numquam est blanditiis minus consequuntur sed natus dignissimos iste
-        quae doloribus unde nemo in quo consequatur officiis quibusdam, nihil
-        veritatis.
+        {aboutMe}
         {isHover && !isSectionActive && <EditCursor />}
       </div>
     </>

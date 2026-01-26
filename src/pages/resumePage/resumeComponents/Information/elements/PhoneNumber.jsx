@@ -1,4 +1,4 @@
-export function PhoneNumber({ setActiveElement, active }) {
+export function PhoneNumber({ phoneNumber, setActiveElement, active }) {
   return (
     <>
       <div
@@ -8,7 +8,7 @@ export function PhoneNumber({ setActiveElement, active }) {
         className={`${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        fakefakefake@gmail.com
+        {phoneNumber}
       </div>
     </>
   );

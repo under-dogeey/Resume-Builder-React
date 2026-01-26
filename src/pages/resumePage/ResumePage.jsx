@@ -1,6 +1,8 @@
 import "./resumePage.css";
 import "../../assets/theme.css";
 import { useState } from "react";
+import { EditableElement } from "./components/EditableElement";
+import { EditableSection } from "./components/EditableSection";
 import { Name } from "./resumeComponents/Name";
 import { Information } from "./resumeComponents/Information/Information";
 import { AboutMe } from "./resumeComponents/AboutMe";
@@ -11,26 +13,53 @@ import { AdditionalSkills } from "./resumeComponents/AdditionalSkills";
 import { TextEditor } from "./components/TextEditor";
 
 export function ResumePage() {
+  const [name, setName] = useState("John Doe");
+  const [aboutMe, setAboutMe] = useState(
+    "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum, esse, numquam est blanditiis minus consequuntur sed natus dignissimos iste quae doloribus unde nemo in quo consequatur officiis quibusdam, nihil veritatis.",
+  );
+  const [additionalSkills, setAdditionalSkills] =
+    useState(`<li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+            <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>`);
+
+  const [textContent, setTextContent] = useState("");
+
   const [activeSection, setActiveSection] = useState(null);
   const [activeElement, setActiveElement] = useState(null);
+  const [activeTextEditor, setActiveTextEditor] = useState(null);
 
   return (
     <>
-      <div className="font-type">
-        <main
-          onClick={() => {
-            setActiveSection("");
-            setActiveElement("");
-          }}
-        >
+      <main
+        onClick={() => {
+          setActiveSection("");
+          setActiveElement("");
+          setActiveTextEditor(false);
+        }}
+      >
+        <div id="resume-stage">
           <div id="resume-box" onClick={(event) => event.stopPropagation()}>
-            <Name
+            <EditableSection
+              id="name"
+              value={name}
+              active={activeElement === "name"}
+              onActivate={() => {
+                setActiveSection();
+                setActiveTextEditor();
+                setTextContent(name);
+              }}
+            />
+            {/*<Name
+              name={name}
               setActiveSection={() => {
                 setActiveSection("name");
                 activeSection !== "name" ? setActiveElement("") : null;
               }}
               isSectionActive={activeSection === "name"}
-            ></Name>
+              setActiveTextEditor={() => {
+                setActiveTextEditor(true);
+              }}
+              setTextContent={setTextContent}
+            ></Name>*/}
 
             <hr className="line-break"></hr>
 
@@ -42,16 +71,24 @@ export function ResumePage() {
               isSectionActive={activeSection === "information"}
               setActiveElement={setActiveElement}
               activeElement={activeElement}
+              setActiveTextEditor={setActiveTextEditor}
+              setTextContent={setTextContent}
             ></Information>
 
             <hr className="line-break"></hr>
 
             <AboutMe
+              aboutMe={aboutMe}
+              setAboutMe={setAboutMe}
               setActiveSection={() => {
                 setActiveSection("about-me");
                 activeSection !== "about-me" ? setActiveElement("") : null;
               }}
               isSectionActive={activeSection === "about-me"}
+              setActiveTextEditor={() => {
+                setActiveTextEditor(true);
+              }}
+              setTextContent={setTextContent}
             ></AboutMe>
 
             <div className="section-title">professional experience</div>
@@ -68,6 +105,8 @@ export function ResumePage() {
               isSectionActive={activeSection === "professional-experience"}
               setActiveElement={setActiveElement}
               activeElement={activeElement}
+              setActiveTextEditor={setActiveTextEditor}
+              setTextContent={setTextContent}
             ></ProfessionalExperience>
 
             <div className="section-title">projects</div>
@@ -82,6 +121,8 @@ export function ResumePage() {
               isSectionActive={activeSection === "projects"}
               setActiveElement={setActiveElement}
               activeElement={activeElement}
+              setActiveTextEditor={setActiveTextEditor}
+              setTextContent={setTextContent}
             ></Projects>
 
             <div className="section-title">education</div>
@@ -96,6 +137,8 @@ export function ResumePage() {
               isSectionActive={activeSection === "education"}
               setActiveElement={setActiveElement}
               activeElement={activeElement}
+              setActiveTextEditor={setActiveTextEditor}
+              setTextContent={setTextContent}
             ></Education>
 
             <div className="section-title">additional skills</div>
@@ -103,6 +146,7 @@ export function ResumePage() {
             <hr className="line-break"></hr>
 
             <AdditionalSkills
+              additionalSkills={additionalSkills}
               setActiveSection={() => {
                 setActiveSection("additional-skills");
                 activeSection !== "additional-skills"
@@ -110,14 +154,18 @@ export function ResumePage() {
                   : null;
               }}
               isSectionActive={activeSection === "additional-skills"}
+              setActiveTextEditor={() => {
+                setActiveTextEditor(true);
+              }}
+              setTextContent={setTextContent}
             ></AdditionalSkills>
 
             {/*<button id="save-button">Save as PDF</button>*/}
           </div>
+        </div>
+      </main>
 
-          <TextEditor />
-        </main>
-      </div>
+      {activeTextEditor && <TextEditor content={textContent}></TextEditor>}
     </>
   );
 }

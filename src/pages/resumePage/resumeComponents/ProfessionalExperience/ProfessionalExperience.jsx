@@ -1,8 +1,5 @@
-import { ExperienceName } from "./elements/ExperienceName";
-import { Location } from "./elements/Location";
-import { Position } from "./elements/Position";
-import { TimePeriod } from "./elements/TimePeriod";
-import { ExperienceDetails } from "./elements/ExperienceDetails";
+import { EditableElement } from "../../components/EditableElement";
+import { EditableHTML } from "../../components/EditableHTML";
 import { EditCursor } from "../../components/EditCursor";
 import { useState } from "react";
 
@@ -11,7 +8,19 @@ export function ProfessionalExperience({
   isSectionActive,
   setActiveElement,
   activeElement,
+  setActiveTextEditor,
+  setTextContent,
 }) {
+  const [experienceName, setExperienceName] = useState("Fake Club");
+  const [location, setLocation] = useState("Fake City, FA");
+  const [position, setPosition] = useState("Faker");
+  const [timePeriod, setTimePeriod] = useState("Month 2069-Present");
+  const [experienceDetails, setExperienceDetails] = useState(
+    `<li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+      <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
+      <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>`,
+  );
+
   const [isHover, setHover] = useState(false);
   return (
     <>
@@ -20,50 +29,84 @@ export function ProfessionalExperience({
           isSectionActive ? "highlight-section" : ""
         }`}
         id="professional-experience"
-        onClick={setActiveSection}
+        onClick={(event) => {
+          setActiveSection();
+          if (event.target !== event.currentTarget) {
+            return;
+          } else {
+            setActiveTextEditor(false);
+            setActiveElement("");
+          }
+        }}
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
         <div className="left-right-indent">
-          <ExperienceName
-            setActiveElement={() => {
-              isSectionActive ? setActiveElement("experience-name") : null;
-            }}
+          <EditableElement
+            className="experience-name"
+            value={experienceName}
             active={activeElement === "experience-name"}
-          ></ExperienceName>
-          <Location
-            setActiveElement={() => {
-              isSectionActive
-                ? setActiveElement("professional-experience.location")
-                : null;
+            onActivate={() => {
+              if (isSectionActive) {
+                setActiveElement("experience-name");
+                setActiveTextEditor(true);
+                setTextContent(experienceName);
+              }
             }}
+          />
+          <EditableElement
+            className="professional-experience.location"
+            value={location}
             active={activeElement === "professional-experience.location"}
-          ></Location>
+            onActivate={() => {
+              if (isSectionActive) {
+                setActiveElement("professional-experience.location");
+                setActiveTextEditor(true);
+                setTextContent(location);
+              }
+            }}
+          />
         </div>
 
         <div className="left-right-indent">
-          <Position
-            setActiveElement={() => {
-              isSectionActive ? setActiveElement("position") : null;
-            }}
+          <EditableElement
+            className="position"
+            value={position}
             active={activeElement === "position"}
-          ></Position>
-          <TimePeriod
-            setActiveElement={() => {
-              isSectionActive
-                ? setActiveElement("professional-experience.time-period")
-                : null;
+            onActivate={() => {
+              if (isSectionActive) {
+                setActiveElement("position");
+                setActiveTextEditor(true);
+                setTextContent(position);
+              }
             }}
+          />
+          <EditableElement
+            className="professional-experience.time-period"
+            value={timePeriod}
             active={activeElement === "professional-experience.time-period"}
-          ></TimePeriod>
+            onActivate={() => {
+              if (isSectionActive) {
+                setActiveElement("professional-experience.time-period");
+                setActiveTextEditor(true);
+                setTextContent(timePeriod);
+              }
+            }}
+          />
         </div>
 
-        <ExperienceDetails
-          setActiveElement={() => {
-            isSectionActive ? setActiveElement("experience-details") : null;
-          }}
+        <EditableHTML
+          className="experience-details"
+          html={experienceDetails}
           active={activeElement === "experience-details"}
-        ></ExperienceDetails>
+          onActivate={() => {
+            if (isSectionActive) {
+              setActiveElement("experience-details");
+              setActiveTextEditor(true);
+              setTextContent(experienceDetails);
+            }
+          }}
+        />
 
         {isHover && !isSectionActive && <EditCursor />}
       </div>

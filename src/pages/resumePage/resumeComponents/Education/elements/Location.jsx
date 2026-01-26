@@ -1,4 +1,4 @@
-export function Location({ setActiveElement, active }) {
+export function Location({ location, setActiveElement, active }) {
   return (
     <>
       <div
@@ -6,7 +6,7 @@ export function Location({ setActiveElement, active }) {
         className={`location ${active ? "highlight-element" : ""}`}
         onClick={setActiveElement}
       >
-        Fake City, FA
+        {location}
       </div>
     </>
   );
