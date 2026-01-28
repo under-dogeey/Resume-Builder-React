@@ -1,9 +1,5 @@
-import { School } from "./elements/School";
-import { Location } from "./elements/Location";
-import { Degree } from "./elements/Degree";
-import { TimePeriod } from "./elements/TimePeriod";
-import { GPA } from "./elements/GPA";
 import { EditCursor } from "../../components/EditCursor";
+import { EditableElement } from "../../components/EditableElement";
 import { useState } from "react";
 
 export function Education({
@@ -14,10 +10,12 @@ export function Education({
   setActiveTextEditor,
   setTextContent,
 }) {
-  const [school, setSchool] = useState("Fake State University");
-  const [location, setLocation] = useState("Fake City, FA");
+  const [school, setSchool] = useState(
+    "<strong>Fake State University</strong>",
+  );
+  const [location, setLocation] = useState("<strong>Fake City, FA</strong>");
   const [degree, setDegree] = useState("B.S, Fake Major");
-  const [timePeriod, setTimePeriod] = useState("Month 2069-Present");
+  const [timePeriod, setTimePeriod] = useState("<em>Month 2069-Present<em>");
   const [gpa, setGpa] = useState("GPA: 0.1/4.0");
 
   const [isHover, setHover] = useState(false);
@@ -41,67 +39,74 @@ export function Education({
         onMouseLeave={() => setHover(false)}
       >
         <div className="left-right-indent">
-          <School
-            school={school}
-            setActiveElement={() => {
+          <EditableElement
+            className="school"
+            html={school}
+            active={activeElement === "school"}
+            onActivate={() => {
               if (isSectionActive) {
                 setActiveElement("school");
                 setActiveTextEditor(true);
                 setTextContent(school);
               }
             }}
-            active={activeElement === "school"}
-          ></School>
-          <Location
-            location={location}
-            setActiveElement={() => {
+          />
+
+          <EditableElement
+            className="education location"
+            html={location}
+            active={activeElement === "education location"}
+            onActivate={() => {
               if (isSectionActive) {
-                setActiveElement("education.location");
+                setActiveElement("education location");
                 setActiveTextEditor(true);
                 setTextContent(location);
               }
             }}
-            active={activeElement === "education.location"}
-          ></Location>
+          />
         </div>
 
         <div className="left-right-indent">
-          <Degree
-            degree={degree}
-            setActiveElement={() => {
+          <EditableElement
+            className="degree"
+            html={degree}
+            active={activeElement === "degree"}
+            onActivate={() => {
               if (isSectionActive) {
                 setActiveElement("degree");
                 setActiveTextEditor(true);
                 setTextContent(degree);
               }
             }}
-            active={activeElement === "degree"}
-          ></Degree>
-          <TimePeriod
-            timePeriod={timePeriod}
-            setActiveElement={() => {
+          />
+
+          <EditableElement
+            className="education time-period"
+            html={timePeriod}
+            active={activeElement === "education time-period"}
+            onActivate={() => {
               if (isSectionActive) {
-                setActiveElement("education.time-period");
+                setActiveElement("education time-period");
                 setActiveTextEditor(true);
                 setTextContent(timePeriod);
               }
             }}
-            active={activeElement === "education.time-period"}
-          ></TimePeriod>
+          />
         </div>
 
         <div className="left-right-indent">
-          <GPA
-            gpa={gpa}
-            setActiveElement={() => {
+          <EditableElement
+            className="gpa"
+            html={gpa}
+            active={activeElement === "gpa"}
+            onActivate={() => {
               if (isSectionActive) {
                 setActiveElement("gpa");
                 setActiveTextEditor(true);
                 setTextContent(gpa);
               }
             }}
-            active={activeElement === "gpa"}
-          ></GPA>
+          />
         </div>
 
         {isHover && !isSectionActive && <EditCursor />}

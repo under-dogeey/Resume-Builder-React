@@ -1,7 +1,5 @@
-import { Address } from "./elements/Address";
-import { PhoneNumber } from "./elements/PhoneNumber";
-import { Email } from "./elements/Email";
 import { EditCursor } from "../../components/EditCursor";
+import { EditableElement } from "../../components/EditableElement";
 import { useState } from "react";
 
 export function Information({
@@ -38,39 +36,44 @@ export function Information({
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
       >
-        <Address
-          address={address}
-          setActiveElement={() => {
+        <EditableElement
+          className="address"
+          html={address}
+          active={activeElement === "address"}
+          onActivate={() => {
             if (isSectionActive) {
               setActiveElement("address");
               setActiveTextEditor(true);
               setTextContent(address);
             }
           }}
-          active={activeElement === "address"}
-        ></Address>
-        <PhoneNumber
-          phoneNumber={phoneNumber}
-          setActiveElement={() => {
+        />
+
+        <EditableElement
+          className="phone-number"
+          html={phoneNumber}
+          active={activeElement === "phone-number"}
+          onActivate={() => {
             if (isSectionActive) {
               setActiveElement("phone-number");
               setActiveTextEditor(true);
               setTextContent(phoneNumber);
             }
           }}
-          active={activeElement === "phone-number"}
-        ></PhoneNumber>
-        <Email
-          email={email}
-          setActiveElement={() => {
+        />
+
+        <EditableElement
+          className="email"
+          html={email}
+          active={activeElement === "email"}
+          onActivate={() => {
             if (isSectionActive) {
-              setActiveElement("projects");
+              setActiveElement("email");
               setActiveTextEditor(true);
               setTextContent(email);
             }
           }}
-          active={activeElement === "projects"}
-        ></Email>
+        />
 
         {isHover && !isSectionActive && <EditCursor />}
       </div>

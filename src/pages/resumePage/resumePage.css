@@ -49,6 +49,8 @@ main
 
 #information
 {
+    display: flex;
+    flex-direction: column;
     position: relative;
     text-align: center;
     padding: 2px;
@@ -158,10 +160,10 @@ main
     font-weight: bold;
 }
 
-.additional-skills-details
+#additional-skills
 {
     position: relative;
-    padding-top: 10px;
+    padding-top: 1px;
     margin: 0px;
 }
 /*-----------------------------------------------*/

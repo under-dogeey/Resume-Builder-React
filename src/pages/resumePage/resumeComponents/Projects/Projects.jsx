@@ -1,7 +1,5 @@
-import { ProjectName } from "./elements/ProjectName";
-import { ProjectDetails } from "./elements/ProjectDetails";
-import { TimePeriod } from "./elements/TimePeriod";
 import { EditCursor } from "../../components/EditCursor";
+import { EditableElement } from "../../components/EditableElement";
 import { useState } from "react";
 
 export function Projects({
@@ -12,8 +10,10 @@ export function Projects({
   setActiveTextEditor,
   setTextContent,
 }) {
-  const [projectName, setProjectName] = useState("Fake Project");
-  const [timePeriod, setTimePeriod] = useState("Month 2069-Present");
+  const [projectName, setProjectName] = useState(
+    "<strong>Fake Project</strong>",
+  );
+  const [timePeriod, setTimePeriod] = useState("<em>Month 2069-Present</em>");
   const [projectDetails, setProjectDetails] =
     useState(`<li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
         <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
@@ -40,41 +40,46 @@ export function Projects({
         onMouseLeave={() => setHover(false)}
       >
         <div className="left-right-indent">
-          <ProjectName
-            projectName={projectName}
-            setActiveElement={() => {
+          <EditableElement
+            className="project-name"
+            html={projectName}
+            active={activeElement === "project-name"}
+            onActivate={() => {
               if (isSectionActive) {
                 setActiveElement("project-name");
                 setActiveTextEditor(true);
                 setTextContent(projectName);
               }
             }}
-            active={activeElement === "project-name"}
-          ></ProjectName>
-          <TimePeriod
-            timePeriod={timePeriod}
-            setActiveElement={() => {
+          />
+
+          <EditableElement
+            className="projects time-period"
+            html={timePeriod}
+            active={activeElement === "projects time-period"}
+            onActivate={() => {
               if (isSectionActive) {
-                setActiveElement("projects.time-period");
+                setActiveElement("projects time-period");
                 setActiveTextEditor(true);
                 setTextContent(timePeriod);
               }
             }}
-            active={activeElement === "projects.time-period"}
-          ></TimePeriod>
+          />
         </div>
 
-        <ProjectDetails
-          projectDetails={projectDetails}
-          setActiveElement={() => {
+        <EditableElement
+          as="ul"
+          className="project-details"
+          html={projectDetails}
+          active={activeElement === "project-details"}
+          onActivate={() => {
             if (isSectionActive) {
               setActiveElement("project-details");
               setActiveTextEditor(true);
               setTextContent(projectDetails);
             }
           }}
-          active={activeElement === "project-details"}
-        ></ProjectDetails>
+        />
 
         {isHover && !isSectionActive && <EditCursor />}
       </div>

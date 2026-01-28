@@ -1,5 +1,4 @@
 import { EditableElement } from "../../components/EditableElement";
-import { EditableHTML } from "../../components/EditableHTML";
 import { EditCursor } from "../../components/EditCursor";
 import { useState } from "react";
 
@@ -11,10 +10,12 @@ export function ProfessionalExperience({
   setActiveTextEditor,
   setTextContent,
 }) {
-  const [experienceName, setExperienceName] = useState("Fake Club");
-  const [location, setLocation] = useState("Fake City, FA");
+  const [experienceName, setExperienceName] = useState(
+    "<strong>Fake Club</strong>",
+  );
+  const [location, setLocation] = useState("<strong>Fake City, FA</strong>");
   const [position, setPosition] = useState("Faker");
-  const [timePeriod, setTimePeriod] = useState("Month 2069-Present");
+  const [timePeriod, setTimePeriod] = useState("<em>Month 2069-Present</em>");
   const [experienceDetails, setExperienceDetails] = useState(
     `<li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit.</li>
@@ -44,7 +45,7 @@ export function ProfessionalExperience({
         <div className="left-right-indent">
           <EditableElement
             className="experience-name"
-            value={experienceName}
+            html={experienceName}
             active={activeElement === "experience-name"}
             onActivate={() => {
               if (isSectionActive) {
@@ -54,13 +55,14 @@ export function ProfessionalExperience({
               }
             }}
           />
+
           <EditableElement
-            className="professional-experience.location"
-            value={location}
-            active={activeElement === "professional-experience.location"}
+            className="professional-experience location"
+            html={location}
+            active={activeElement === "professional-experience location"}
             onActivate={() => {
               if (isSectionActive) {
-                setActiveElement("professional-experience.location");
+                setActiveElement("professional-experience location");
                 setActiveTextEditor(true);
                 setTextContent(location);
               }
@@ -71,7 +73,7 @@ export function ProfessionalExperience({
         <div className="left-right-indent">
           <EditableElement
             className="position"
-            value={position}
+            html={position}
             active={activeElement === "position"}
             onActivate={() => {
               if (isSectionActive) {
@@ -81,13 +83,14 @@ export function ProfessionalExperience({
               }
             }}
           />
+
           <EditableElement
-            className="professional-experience.time-period"
-            value={timePeriod}
-            active={activeElement === "professional-experience.time-period"}
+            className="professional-experience time-period"
+            html={timePeriod}
+            active={activeElement === "professional-experience time-period"}
             onActivate={() => {
               if (isSectionActive) {
-                setActiveElement("professional-experience.time-period");
+                setActiveElement("professional-experience time-period");
                 setActiveTextEditor(true);
                 setTextContent(timePeriod);
               }
@@ -95,7 +98,8 @@ export function ProfessionalExperience({
           />
         </div>
 
-        <EditableHTML
+        <EditableElement
+          as="ul"
           className="experience-details"
           html={experienceDetails}
           active={activeElement === "experience-details"}

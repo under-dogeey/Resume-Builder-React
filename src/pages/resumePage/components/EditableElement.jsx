@@ -1,6 +1,6 @@
 export function EditableElement({
   as: Tag = "div",
-  value,
+  html,
   className = "",
   active = false,
   onActivate,
@@ -10,8 +10,7 @@ export function EditableElement({
       contentEditable="false"
       className={`${className} ${active ? "highlight-element" : ""}`}
       onClick={onActivate}
-    >
-      {value}
-    </Tag>
+      dangerouslySetInnerHTML={{ __html: html }}
+    />
   );
 }
